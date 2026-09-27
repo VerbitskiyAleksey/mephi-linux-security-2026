@@ -1,0 +1,64 @@
+    1  clear
+    2  groupadd students
+    3  useradd -u 1234 -G students -m user1
+    4  passwd user1
+    5  chage -M 90 user1
+    6  id user1
+    7  chage -l user1
+    8  find / -type f -perm -4000 2>/dev/null > /root/mephi_hw/suid_files.txt
+    9  cat /root/mephi_hw/suid_files.txt
+   10  ps -eo pid,ruid,euid,user,cmd | awk '$3 == 0 && $2 != 0' > /root/mephi_hw/processes.txt
+   11  cat /root/mephi_hw/processes.txt
+   12  cp /bin/cat /home/user1/my_cat
+   13  chown root:root /home/user1/my_cat
+   14  chmod 4755 /home/user1/my_cat
+   15  setenforce 0
+   16  su - user1 -c 'id'
+   17  su - user1 -c '/home/user1/my_cat /etc/shadow | head -n 3'
+   18  cp /bin/chown /home/user1/my_chown
+   19  chown root:root /home/user1/my_chown
+   20  setcap cap_chown+ep /home/user1/my_chown
+   21  getcap /home/user1/my_chown
+   22  su - user1 -c 'touch /home/user1/testfile.txt'
+   23  su - user1 -c 'chown root /home/user1/testfile.txt'
+   24  su - user1 -c '/home/user1/my_chown root /home/user1/testfile.txt'
+   25  ls -l /home/user1/testfile.txt
+   26  visudo
+   27  grep -n user1 /etc/sudoers
+   28  su - user1 -c 'sudo /usr/bin/date -s "2026-09-27 15:30:00"'
+   29  su - user1 -c 'date'
+   30  chronyc makestep
+   31  cd /root/mephi_hw
+   32  stat /home/user1 > stat.out
+   33  stat /home/user1/my_cat >> stat.out
+   34  stat /home/user1/my_chown >> stat.out
+   35  getcap /home/user1/my_chown > getcap.out
+   36  cp /etc/passwd /etc/shadow /etc/group /etc/sudoers .
+   37  echo "Порядковый номер: 374859"
+   38  cd /root/mephi_hw
+   39  git init
+   40  [200~git config --global user.name "Verbitskiy Alexey"
+   41  git config --global user.name "Verbitskiy Alexey"
+   42  git config --global user.email "0verbitskiy@mail.ru"
+   43  git add .
+   44  git commit -m "Add MEPHI homework 2026 files"
+   45  git branch -M main
+   46  git remote add origin https://github.com/VerbitskiyAleksey/mephi-linux-security-2026.git
+   47  git push -u origin main
+   48  ip -br a
+   49  ping -c 3 8.8.8.8
+   50  ping -c 3 github.com
+   51  date
+   52  ping -c 3 github.com
+   53  git push
+   54  systemctl restart chronyd
+   55  timedatectl set-ntp true
+   56  chronyc makestep
+   57  date
+   58  git push -u origin main
+   59  find / -type f -name "*.png" -mmin -50 2>/dev/null
+   60  cp "/home/verbitskiyalexey/Изображения/Снимки экрана/Снимок экрана от 2026-09-27 19-10-59.png" mephi-screenshot.png
+   61  ls -l /root/mephi_hw/mephi-screenshot.png
+   62  cd /root/mephi_hw
+   63  history -a
+   64  history > history.out
